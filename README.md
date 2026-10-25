@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Counter App (Onboarding)
 
-## Getting Started
+A tiny Next.js app: three buttons, three counters. Used for onboarding tasks 0-4.
 
-First, run the development server:
+## Setup
 
 ```bash
+git clone https://github.com/davdwan21/onboarding-proj.git
+cd onboarding-proj
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tasks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Each task has its own branch. Check out the branch, then follow your task sheet.
 
-## Learn More
+| Task | Branch   | Topic                     |
+| ---- | -------- | ------------------------- |
+| 0    | `main`   | Project setup             |
+| 1    | `task-1` | Frontend bugfixing        |
+| 2    | `task-2` | API routes                |
+| 3    | `task-3` | Data modeling (Prisma)    |
+| 4    | `task-4` | Auth (sign-in + proxy)    |
 
-To learn more about Next.js, take a look at the following resources:
+## Layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `app/page.tsx` — the counter page
+- `components/CounterButton.tsx` — reusable button + count display
+- `lib/counters.ts` — shared types
