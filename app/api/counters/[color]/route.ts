@@ -4,6 +4,7 @@ import { DEMO_USERNAME, incrementCount } from "@/lib/counterStore";
 
 // POST /api/counters/:color -> increments one counter, returns all counts
 export async function POST(_req: NextRequest, ctx: RouteContext<"/api/counters/[color]">) {
+  // TODO (task 4): use the signed-in user instead of DEMO_USERNAME.
   const { color } = await ctx.params;
 
   if (!isColor(color)) {
