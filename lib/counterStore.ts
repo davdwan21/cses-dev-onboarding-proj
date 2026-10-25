@@ -23,9 +23,13 @@ export async function getCounts(username: string): Promise<Counts> {
 }
 
 export async function incrementCount(username: string, color: Color): Promise<Counts> {
-  // TODO (task 3): add 1 to this user's counter for `color`.
-  // - Create the user if they don't exist yet (see getOrCreateUser).
-  // - Create the counter if this is the first click for that color.
-  // Hint: prisma.counter.upsert and `{ increment: 1 }`.
-  throw new Error("incrementCount not implemented");
+  const user = await getOrCreateUser(username);
+
+  await prisma.counter.upsert({
+    where: { userId_color: { userId: user.id, color } },
+    create: { userId: user.id, color, value: 1 },
+    update: { value: { increment: 1 } },
+  });
+
+  return getCounts(username);
 }
