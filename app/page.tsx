@@ -16,8 +16,8 @@ export default function Home() {
       <h1 className="text-3xl font-semibold">Counters</h1>
       <div className="flex gap-10">
         <CounterButton color="red" count={counts.red} onIncrement={increment} />
-        <CounterButton color="red" count={counts.green} onIncrement={increment} />
-        <CounterButton color="blue" count={counts.blue} onIncrement={() => increment} />
+        <CounterButton color="green" count={counts.green} onIncrement={increment} />
+        <CounterButton color="blue" count={counts.blue} onIncrement={increment} />
       </div>
     </main>
   );
