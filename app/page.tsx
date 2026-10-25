@@ -1,14 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CounterButton } from "@/components/CounterButton";
 import type { Color, Counts } from "@/lib/counters";
 
 export default function Home() {
   const [counts, setCounts] = useState<Counts>({ red: 0, green: 0, blue: 0 });
+  const [error, setError] = useState<string | null>(null);
 
-  function increment(color: Color) {
-    setCounts((prev) => ({ ...prev, [color]: prev[color] + 1 }));
+  useEffect(() => {
+    fetch("/api/counters")
+      .then((res) => {
+        if (!res.ok) throw new Error(`GET /api/counters failed (${res.status})`);
+        return res.json();
+      })
+      .then(setCounts)
+      .catch((err: Error) => setError(err.message));
+  }, []);
+
+  async function increment(color: Color) {
+    const res = await fetch(`/api/counters/${color}`, { method: "POST" });
+    if (!res.ok) {
+      setError(`POST /api/counters/${color} failed (${res.status})`);
+      return;
+    }
+    setError(null);
+    setCounts(await res.json());
   }
 
   return (
@@ -19,6 +36,7 @@ export default function Home() {
         <CounterButton color="green" count={counts.green} onIncrement={increment} />
         <CounterButton color="blue" count={counts.blue} onIncrement={increment} />
       </div>
+      {error && <p className="text-red-600">{error}</p>}
     </main>
   );
 }
