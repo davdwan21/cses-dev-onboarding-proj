@@ -1,0 +1,22 @@
+// Prisma schema: https://pris.ly/d/prisma-schema
+// After editing, run: npx prisma migrate dev --name <describe-change>
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// TODO (task 3): model a user and their counters.
+//
+// Requirements:
+// - A User has a unique `username`.
+// - A User has many Counters.
+// - A Counter has a `color` ("red" | "green" | "blue") and an integer `value`
+//   that starts at 0.
+// - A user can have at most ONE counter per color.
+//
+// lib/counterStore.ts queries these models. Use it to check your names.

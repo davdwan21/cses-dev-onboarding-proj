@@ -30,3 +30,17 @@ Each task has its own branch. Check out the branch, then follow your task sheet.
 - `app/page.tsx` — the counter page
 - `components/CounterButton.tsx` — reusable button + count display
 - `lib/counters.ts` — shared types
+- `app/api/counters/` — API routes
+- `lib/counterStore.ts` — DB reads/writes
+- `lib/db.ts` — Prisma client
+- `prisma/schema.prisma` — DB schema (SQLite, file at `prisma/dev.db`)
+
+## Database
+
+After changing `prisma/schema.prisma`:
+
+```bash
+npx prisma migrate dev --name <describe-change>
+```
+
+Browse data with `npx prisma studio`.

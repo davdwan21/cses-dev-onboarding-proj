@@ -1,8 +1,8 @@
 import { connection } from "next/server";
-import { getCounts } from "@/lib/mockStore";
+import { DEMO_USERNAME, getCounts } from "@/lib/counterStore";
 
 // GET /api/counters -> { red, green, blue }
 export async function GET() {
   await connection();
-  return Response.json(getCounts());
+  return Response.json(await getCounts(DEMO_USERNAME));
 }
