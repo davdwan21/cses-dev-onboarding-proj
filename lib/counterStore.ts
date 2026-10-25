@@ -1,9 +1,6 @@
 import { prisma } from "./db";
 import { isColor, type Color, type Counts } from "./counters";
 
-// Until sign-in exists (task 4), every request uses this user.
-export const DEMO_USERNAME = "demo";
-
 export async function getOrCreateUser(username: string) {
   return prisma.user.upsert({
     where: { username },

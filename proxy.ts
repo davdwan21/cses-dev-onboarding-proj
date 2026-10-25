@@ -1,12 +1,18 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { SESSION_COOKIE } from "@/lib/session";
 
-// Runs before every matched request (see `config.matcher` below).
+// Runs before every matched request. Signed-out users can't reach the
+// counter page or API.
 export function proxy(request: NextRequest) {
-  // TODO (task 4): block signed-out users.
-  // - Signed in = the request has the session cookie (see lib/session.ts).
-  // - Signed-out API requests (/api/...) -> 401 JSON { error: "Not signed in" }.
-  // - Signed-out page requests -> redirect to /login.
-  return NextResponse.next();
+  if (request.cookies.has(SESSION_COOKIE)) {
+    return NextResponse.next();
+  }
+
+  if (request.nextUrl.pathname.startsWith("/api/")) {
+    return Response.json({ error: "Not signed in" }, { status: 401 });
+  }
+
+  return NextResponse.redirect(new URL("/login", request.url));
 }
 
 export const config = {

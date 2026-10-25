@@ -1,10 +1,20 @@
+import { cookies } from "next/headers";
+import { getOrCreateUser } from "@/lib/counterStore";
+import { SESSION_COOKIE } from "@/lib/session";
+
 // POST /api/login  body: { username } -> sets the session cookie
 export async function POST(request: Request) {
-  // TODO (task 4):
-  // 1. Read `username` from the JSON body. Empty/missing -> 400.
-  // 2. Make sure the user exists (lib/counterStore.ts).
-  // 3. Set the session cookie (lib/session.ts) to the username.
-  //    Use httpOnly so browser JS can't read it.
-  // 4. Return { username }.
-  return Response.json({ error: "Not implemented" }, { status: 501 });
+  const body = await request.json().catch(() => null);
+  const username = typeof body?.username === "string" ? body.username.trim() : "";
+
+  if (!username) {
+    return Response.json({ error: "Username is required" }, { status: 400 });
+  }
+
+  await getOrCreateUser(username);
+
+  const cookieStore = await cookies();
+  cookieStore.set(SESSION_COOKIE, username, { httpOnly: true, sameSite: "lax", path: "/" });
+
+  return Response.json({ username });
 }

@@ -1,9 +1,12 @@
-import { connection } from "next/server";
-import { DEMO_USERNAME, getCounts } from "@/lib/counterStore";
+import { getCounts } from "@/lib/counterStore";
+import { getSessionUsername } from "@/lib/session";
 
-// GET /api/counters -> { red, green, blue }
+// GET /api/counters -> { red, green, blue } for the signed-in user
 export async function GET() {
-  // TODO (task 4): use the signed-in user instead of DEMO_USERNAME.
-  await connection();
-  return Response.json(await getCounts(DEMO_USERNAME));
+  const username = await getSessionUsername();
+  if (!username) {
+    return Response.json({ error: "Not signed in" }, { status: 401 });
+  }
+
+  return Response.json(await getCounts(username));
 }
