@@ -17,16 +17,26 @@ Open http://localhost:3000.
 
 Each task has its own branch. Check out the branch, then follow your task sheet.
 
-| Task | Branch   | Topic                     |
-| ---- | -------- | ------------------------- |
-| 0    | `main`   | Project setup             |
-| 1    | `task-1` | Frontend bugfixing        |
-| 2    | `task-2` | API routes                |
-| 3    | `task-3` | Data modeling (Prisma)    |
-| 4    | `task-4` | Auth (sign-in + proxy)    |
+| Task | Branch   | Topic                  |
+| ---- | -------- | ---------------------- |
+| 0    | `main`   | Project setup          |
+| 1    | `task-1` | Frontend bugfixing     |
+| 2    | `task-2` | API routes             |
+| 3    | `task-3` | Data modeling (Prisma) |
+| 4    | `task-4` | Auth (sign-in + proxy) |
 
 ## Layout
 
 - `app/page.tsx` — the counter page
 - `components/CounterButton.tsx` — reusable button + count display
 - `lib/counters.ts` — shared types
+
+## Getting Started
+
+If you're a dev, read README-dev.md. If you're an EM, read README-em.md
+
+## Contact
+
+If you get stuck on any of the onboarding, shoot either of the VP Techs a message on the slack. you can also use email if you want :)
+David Wan (dpwan@ucsd.edu)
+Caden Cheng (cfc005@ucsd.edu)
