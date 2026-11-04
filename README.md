@@ -15,7 +15,7 @@ Open http://localhost:3000.
 
 ## Tasks
 
-Each task has its own branch. Check out the branch, then follow your task sheet.
+Each task has its own branch. Check out the branch, then follow `TASK.md` on that branch.
 
 | Task | Branch   | Topic                     |
 | ---- | -------- | ------------------------- |
